@@ -1,0 +1,13 @@
+<div class="title-dashboard">
+    <h2>Top Heroes</h2>
+</div>
+
+<div>
+    <ul class="heroes">
+        <li *ngFor="let hero of heroes">
+          <button [routerLink]="['/detail', hero.id]" [class.selected]="hero === selectedHero" type="button" (click)="onSelect(hero)">
+            <span class="name">{{hero.name}}</span>
+          </button>
+        </li>
+      </ul>
+</div>
