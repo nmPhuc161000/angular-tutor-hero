@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
-  selectedHero?: Hero;
 
   constructor(private apiService: ApiService) {}
 
@@ -22,9 +21,5 @@ export class HeroesComponent implements OnInit {
         console.error('Error fetching data:', error);
       }
     )
-  }
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
   }
 }

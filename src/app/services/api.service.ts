@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable, catchError, of, switchMap, tap } from 'rxjs';
 import { Hero } from '../hero';
 
 @Injectable({
@@ -11,10 +11,17 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  //lay du lieu ra tu api
   getData(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.apiUrl);
   }
 
+  getHeroById(id: number): Observable<Hero> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Hero>(url)
+  }
+
+  //cap nhat du lieu tu api
   updateHero(hero: Hero): Observable<Hero> {
     const url = `${this.apiUrl}/${hero.id}`;
     const httpOptions = {
@@ -28,6 +35,20 @@ export class ApiService {
       );
   }
 
+  //xoa du lieu tu api
+  deleteHero(id: number): Observable<Hero[]> {
+    const url = `${this.apiUrl}/${id}`;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    console.log(`Calling DELETE API: ${url}`);
+    return this.http.delete<Hero>(url, httpOptions).pipe(
+      tap(() => console.log(`Hero deleted: id=${id}`)),
+      catchError(this.handleError<any>('deleteHero')),
+      switchMap(() => this.getData())
+    );
+  }
+  
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log lỗi vào console
