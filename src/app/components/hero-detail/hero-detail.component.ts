@@ -23,7 +23,7 @@ export class HeroDetailComponent {
   }
 
   getHero(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id')); // tuong duong useParam() ben react const {id} = useParam('id');
     console.log('Route ID:', id); // Kiểm tra id
 
     if (isNaN(id)) {
@@ -43,8 +43,8 @@ export class HeroDetailComponent {
   }
 
   save(): void {
-    if (this.heroes) {
-      this.apiService.updateHero(this.heroes).subscribe(
+    if (this.hero) {
+      this.apiService.updateHero(this.hero).subscribe(
         () => {
           console.log('Hero updated in component');
           alert('Hero updated successfully');
@@ -63,6 +63,7 @@ export class HeroDetailComponent {
         () => {
           console.log('Hero deleted in component');
           alert('Hero deleted successfully');
+          this.location.back();
         },
         (error) => {
           console.error('Error deleting hero', error);
