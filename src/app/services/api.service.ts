@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, switchMap, tap } from 'rxjs';
 import { Hero } from '../hero';
+import { url } from 'inspector';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,14 @@ export class ApiService {
   getHeroById(id: number): Observable<Hero> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Hero>(url)
+  }
+
+  //them moi du lieu vao api
+  addHero(hero: Hero): Observable<Hero>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.post<Hero>(this.apiUrl, hero, httpOptions);
   }
 
   //cap nhat du lieu tu api

@@ -18,6 +18,7 @@ export class HeroDetailComponent {
     private route: ActivatedRoute,
     private location: Location
   ) {}
+  //tuong duong useEffect 
   ngOnInit(): void {
     this.getHero();
   }
@@ -48,6 +49,7 @@ export class HeroDetailComponent {
         () => {
           console.log('Hero updated in component');
           alert('Hero updated successfully');
+          this.goBack();
         },
         (error) => {
           console.error('Error updating hero', error);
