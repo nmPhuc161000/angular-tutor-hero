@@ -3,16 +3,21 @@
   <a routerLink="/dashboard"><button>Dashboard</button></a>
   <a routerLink="/heroes"><button>Heroes</button></a>
 </div>
-<div style="margin-top: 15px; margin-bottom: 15px;">
+<div style="margin-top: 15px; margin-bottom: 15px">
   <label for="new-hero">Hero name: </label>
   <input id="new-hero" #heroName />
 
-  <!-- (click) passes input value to add() and then clears the input -->
   <button
     type="button"
     class="add-button"
     (click)="add(heroName.value); heroName.value = ''"
-    style="height: 30px; font-size: 16px; display: flex; justify-content: center; align-items: center;"
+    style="
+      height: 30px;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    "
   >
     <span>Add hero</span>
   </button>
