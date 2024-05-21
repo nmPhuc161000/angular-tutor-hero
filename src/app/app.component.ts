@@ -5,7 +5,7 @@ import { ApiService } from './services/api.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'Tour of Heroes';
@@ -18,16 +18,22 @@ export class AppComponent {
   }
 
   getHeroes(): void {
-    this.apiService.getData()
-      .subscribe(heroes => this.heroes = heroes);
+    this.apiService.getData().subscribe((heroes) => (this.heroes = heroes));
   }
 
   add(name: string): void {
     name = name.trim();
-  if (!name) { return; }
-  this.apiService.addHero({ name } as Hero)
-    .subscribe(hero => {
-      this.heroes.push(hero);
-    });
+    if (!name) {
+      return;
+    }
+    this.apiService.addHero({ name } as Hero).subscribe(
+      (hero) => {
+        this.heroes.push(hero);
+        alert(`Add new hero name '${hero.name}' successful. `);
+      },
+      (error) => {
+        alert('Something wrong when you add new hero!');
+      }
+    );
   }
 }
