@@ -1,25 +1,24 @@
-<h1>{{ title }}</h1>
-<div>
-  <a routerLink="/dashboard"><button>Dashboard</button></a>
-  <a routerLink="/heroes"><button>Heroes</button></a>
-</div>
-<div style="margin-top: 15px; margin-bottom: 15px">
-  <label for="new-hero">Hero name: </label>
-  <input id="new-hero" #heroName />
+<div class="home-page">
+  <div class="content">
+    <h1>{{ title }}</h1>
+    <div>
+      <a routerLink="/dashboard"><button>Dashboard</button></a>
+      <a routerLink="/heroes"><button>Heroes</button></a>
+    </div>
+    <div style="margin-top: 15px; margin-bottom: 15px" class="add-hero">
+      <div>
+        <label for="new-hero">Hero name: </label>
+        <input id="new-hero" #heroName placeholder="Enter here" />
+      </div>
 
-  <button
-    type="button"
-    class="add-button"
-    (click)="add(heroName.value); heroName.value = ''"
-    style="
-      height: 30px;
-      font-size: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    "
-  >
-    <span>Add hero</span>
-  </button>
+      <button
+        type="button"
+        class="add-button"
+        (click)="add(heroName.value); heroName.value = ''"
+      >
+        <span>Add hero</span>
+      </button>
+    </div>
+  </div>
+  <router-outlet />
 </div>
-<router-outlet />

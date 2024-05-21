@@ -1,0 +1,45 @@
+.home-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 14px;
+  background-color: white;
+  box-shadow: 0 3px 20px 0 rgb(221 209 209 / 20%),
+    0 3px 20px 0 rgb(120 105 105 / 19%);
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    .add-hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      div {
+        height: 32px;
+        label {
+            height: 100%;
+        }
+        input {
+          border: none;
+          height: 100%;
+          border-bottom: 0.3px solid gray;
+        }
+      }
+
+      button {
+        height: 30px;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 5px;
+        span {
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
